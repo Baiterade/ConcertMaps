@@ -1,71 +1,59 @@
-// Set current day
+function success(pos) {
+    var crd = pos.coords;
+  
+    console.log('Your current position is:');
+    console.log(`Latitude : ${crd.latitude}`);
+    console.log(`Longitude: ${crd.longitude}`);
+    console.log(`More or less ${crd.accuracy} meters.`);
+  }
+  
+//   function error(err) {
+//     console.warn(`ERROR(${err.code}): ${err.message}`);
+//   }
+  
+navigator.geolocation.getCurrentPosition(success);
+console.log(getCurrentPosition());
 
-$("#currentDay").append(moment().format("MMM Do"));
 
-// Generate time blocks
+let map;
 
-var times = ["10 am", "11 am", "12 pm", "1 pm", "2 pm", "3 pm", "4 pm", "5 pm", "6 pm"];
-
-// Generate a time block for each hour, 9am-5pm
-
-var currentHourActual = moment().format("h a");
-console.log(currentHourActual);
-
-for (i = 0; i < times.length; i++) {
-
-    // Create Block
-
-    var currentTimeBlock = $("<li>");
-    $(currentTimeBlock).addClass("d-flex flex-row m-3 border rounded");
-
-    // Create column displaying hour
-
-    var currentHour = document.createElement("div");
-    $(currentHour).addClass("currentHourEl flex-col border p-3");
-
-    currentHour.textContent = times[i];
-
-    $(currentTimeBlock).append(currentHour);
-
-    // Column for text input
-
-    var textField = $("<input>");
-    $(textField).addClass("textFieldEl flex-col flex-grow-1 border p-3");
-
-    // If data exists in local storage, retrieve and display it.
-
-    if (localStorage.getItem(times[i])) {
-        textField.val(localStorage.getItem(times[i]));
-    }
-
-    $(currentTimeBlock).append(textField);
-
-    // Column for save button
-
-    var saveBtn = $("<button>");
-    $(saveBtn).addClass("saveButtonEl flex-col border p-3");
-    $(saveBtn).text("Save");
-
-    $(currentTimeBlock).append(saveBtn);
-
-    // Color each block based on past, present, or future status
-
-    if (times[i] === currentHourActual) {
-        currentTimeBlock.addClass("bg-warning");
-    } else if (times[i] < currentHourActual) {
-        currentTimeBlock.addClass("bg-secondary");
-    } else {
-        currentTimeBlock.addClass("bg-primary");
-    }
-
-    $(".container").append(currentTimeBlock);
-
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 8,
+  });
 }
 
-//Function: When the save button is clicked on a time block, 
-//the text field content is saved in local storage.
 
-$(".saveButtonEl").click(function () {
-    localStorage.setItem($(this).siblings(".currentHourEl").text(), $(this).siblings(".textFieldEl").val());
-    alert("Click 'OK' to save content for " + $(this).siblings(".currentHourEl").text() + "!");
-});
+var apiKey = '';
+
+var inputEl = document.getElementById('artist-search');
+var artist = inputEl.value;
+
+function getArtistData() {
+    // event.preventDefault();
+
+    // var citySearch = document.getElementById('city-search');
+    // var city = citySearch.value;
+
+    // if (savedCity) {
+    //     city = savedCity
+    // }
+    
+    var queryUrl = "https://api.songkick.com/api/3.0/artists/{artist_id}/calendar.json" + "?apikey=" + apiKey;
+      
+    fetch(queryUrl)
+        .then(function (response) {
+            return response.json();
+            }
+        )
+        .then(function (data) {
+            coordinates = [data.coord.lat, data.coord.lon];
+            searchedCity = data.name;
+            displayCityName(searchedCity);              
+            getForecast();
+            storeCities(searchedCity);
+            getStoredCities(searchedCity);
+            }
+        );   
+}
