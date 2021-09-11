@@ -17,6 +17,13 @@ function initMap() {
     center: { lat: 38.355, lng: -98.3495 },
     zoom: 4,
   });
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const pos = {lat: position.coords.latitude, lng: position.coords.longitude};
+      map.setCenter(pos);
+    })
+  };
 }
 
 document.getElementById("submit").addEventListener("click", getArtistData);
@@ -54,7 +61,9 @@ function getConcerts() {
     )
     .then(function (data) {
       console.log(data);
+      
       concertInfo = data.resultsPage.results.event;
+
       generateMarkers();
     }
     );
