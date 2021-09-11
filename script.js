@@ -14,14 +14,15 @@ let map;
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8,
+    center: { lat: 38.355, lng: -98.3495 },
+    zoom: 4,
   });
 }
 
 document.getElementById("submit").addEventListener("click", getArtistData);
 
 var artistId;
+var concertInfo;
 
 function getArtistData() {
 
@@ -53,7 +54,19 @@ function getConcerts() {
     )
     .then(function (data) {
       console.log(data);
+      concertInfo = data.resultsPage.results.event;
+      generateMarkers();
     }
     );
 
+}
+
+function generateMarkers(){
+  for(i = 0; i < concertInfo.length; i++){
+    new google.maps.Marker({
+      position: { lat: concertInfo[i].venue.lat, lng:concertInfo[i].venue.lng },
+      map,
+      title: "Hello World!",
+    });
+  }
 }
