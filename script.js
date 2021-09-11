@@ -13,17 +13,18 @@ navigator.geolocation.getCurrentPosition(success);
 let map;
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 38.355, lng: -98.3495 },
-    zoom: 4,
-  });
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
       const pos = {lat: position.coords.latitude, lng: position.coords.longitude};
-      map.setCenter(pos);
+
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: pos,
+        zoom: 8,
+      });
     })
   };
+  
 }
 
 document.getElementById("submit").addEventListener("click", getArtistData);
@@ -61,7 +62,7 @@ function getConcerts() {
     )
     .then(function (data) {
       console.log(data);
-      
+
       concertInfo = data.resultsPage.results.event;
 
       generateMarkers();
