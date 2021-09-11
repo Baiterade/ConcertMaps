@@ -1,0 +1,24 @@
+{
+  "name": "concertmaps",
+  "version": "1.0.0",
+  "description": "Project 1",
+  "main": "script.js",
+  "scripts": {
+    "build-css":"tailwindcss build src/tailwind.css -o public/tail.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Baiterade/ConcertMaps.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Baiterade/ConcertMaps/issues"
+  },
+  "homepage": "https://github.com/Baiterade/ConcertMaps#readme",
+  "dependencies": {
+    "css": "^3.0.0",
+    "tailwind": "^4.0.0"
+  }
+}

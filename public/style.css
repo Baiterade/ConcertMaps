@@ -1,0 +1,81 @@
+
+
+html, body {
+  font-family: 'Barlow', sans-serif;
+  color: white;
+  letter-spacing: 1px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  height: 100%;
+}
+
+section {
+  display: flex;
+  height: 100%;
+}
+
+#search {
+  text-align: center;
+  background-image: linear-gradient(#58595b, rgb(247, 86, 65));
+  width: 15%;
+  padding: 20px;
+}
+
+#search h1 {
+  font-size: 48px;
+}
+
+#input-fields {
+  margin-top: 200px;
+}
+
+input {
+  display: block;
+  margin: 0 auto;
+  width: 75%;
+  margin-top: 50px;
+  border: none;
+  outline: none;
+  color: white;
+  font-family: 'Barlow', sans-serif;
+  letter-spacing: 1px;
+  background-color: transparent;
+  border-bottom: 1px solid white;
+  padding-bottom: 15px;
+}
+
+::placeholder {
+  text-align: center;
+  color: white;
+  font-family: 'Barlow', sans-serif;
+  letter-spacing: 1px;
+}
+
+#submit {
+  margin-top: 45px;
+  border: 1px solid white;
+  border-radius: 50px;
+  background-color: transparent;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-family: 'Barlow', sans-serif;
+  padding: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  cursor: pointer;
+}
+
+#map {
+  /* height: 100%; */
+  width: 85%;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
