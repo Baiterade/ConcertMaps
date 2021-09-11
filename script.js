@@ -17,6 +17,13 @@ function initMap() {
     center: { lat: -34.397, lng: 150.644 },
     zoom: 8,
   });
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const pos = {lat: position.coords.latitude, lng: position.coords.longitude};
+      map.setCenter(pos);
+    })
+  };
 }
 
 document.getElementById("submit").addEventListener("click", getArtistData);

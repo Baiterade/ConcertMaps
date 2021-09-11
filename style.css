@@ -70,6 +70,11 @@ input {
   cursor: pointer;
 }
 
+footer {
+  position: relative;
+  top: 525px;
+}
+
 #map {
   /* height: 100%; */
   width: 85%;
