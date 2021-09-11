@@ -7,12 +7,7 @@ function success(pos) {
     console.log(`More or less ${crd.accuracy} meters.`);
   }
   
-//   function error(err) {
-//     console.warn(`ERROR(${err.code}): ${err.message}`);
-//   }
-  
 navigator.geolocation.getCurrentPosition(success);
-console.log(getCurrentPosition());
 
 
 let map;
@@ -24,36 +19,35 @@ function initMap() {
   });
 }
 
-
-var apiKey = '';
-
-var inputEl = document.getElementById('artist-search');
-var artist = inputEl.value;
+document.getElementById("submit").addEventListener("click", getArtistData);
 
 function getArtistData() {
-    // event.preventDefault();
 
-    // var citySearch = document.getElementById('city-search');
-    // var city = citySearch.value;
+  var artist = document.getElementById('artist-search').value;
 
-    // if (savedCity) {
-    //     city = savedCity
-    // }
-    
-    var queryUrl = "https://api.songkick.com/api/3.0/artists/{artist_id}/calendar.json" + "?apikey=" + apiKey;
-      
-    fetch(queryUrl)
+  var artistId;
+
+    fetch("https://api.songkick.com/api/3.0/search/artists.json?apikey=gKmSw1OM4IAL8F8j&query=" + artist)
         .then(function (response) {
             return response.json();
             }
         )
         .then(function (data) {
-            coordinates = [data.coord.lat, data.coord.lon];
-            searchedCity = data.name;
-            displayCityName(searchedCity);              
-            getForecast();
-            storeCities(searchedCity);
-            getStoredCities(searchedCity);
+            console.log(data);
+
+            artistId = data.resultsPage.results.artist[0].id;
             }
         );   
+
+    fetch("https://api.songkick.com/api/3.0/artists/" + artistId + "/calendar.json?apikey=gKmSw1OM4IAL8F8j")
+  
+      .then(function (response) {
+        return response.json();
+       }
+        )
+      .then(function (data) {
+        console.log(data);
+        }
+  );  
+
 }
