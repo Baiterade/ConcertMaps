@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Rodemap</title>
+
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+      <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;300;400;600;900&display=swap" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="style.css"/>
+
+    </head>
+
+    <body>
+
+      <main>
+
+        <section>
+
+          <div id="search">
+            
+            <h1>Rodemap</h1>
+
+              <div id="input-fields">
+
+                <input type="text" name="artist-search" id="artist-search" placeholder="ENTER ARTIST NAME"/>
+                <input type="text" name="location-search" id="location-search" placeholder="ENTER LOCATION"/>
+  
+                <button id="submit">SUBMIT</button>
+              
+              </div>
+
+              <footer>
+                <img>
+                <p>Powered by Songkick</p>
+              </footer>
+          
+          </div>
+
+          <div id="map"></div>
+
+        </section>
+
+      </main>
+
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvuGgOYuLOHhhxOlco2IffFGJWPX4JZ7A&callback=initMap&libraries=places" async></script>
+      <script src="script.js"></script>
+  
+    </body>
+
+</html>
