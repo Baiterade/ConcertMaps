@@ -70,12 +70,13 @@ input {
   cursor: pointer;
 }
 
-footer {
-  position: relative;
-  top: 525px;
-}
-
 #map {
   /* height: 100%; */
+  color: black;
+  text-align: center;
   width: 85%;
+}
+
+#songkick{
+  margin-top: 200px;
 }
