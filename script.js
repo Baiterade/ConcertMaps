@@ -258,11 +258,46 @@ function getArtistData() {
       console.log(data);
 
       artistId = data.resultsPage.results.artist[0].id;
+      artistName = data.resultsPage.results.artist[0].displayName;
 
       getConcerts();
+      storeArtist(artistName);
+      getStoredArtists(artistName);
       }
     );
 
+}
+
+var searchedArtists = [];
+
+function storeArtist() {
+    searchedArtists.push(artistName);
+    localStorage.setItem("artists", searchedArtists);
+}
+
+function getStoredArtists() {
+  localStorage.getItem("artists");
+
+  var searchHistory = document.getElementById('artist-buttons');
+  searchHistory.innerHTML = '';
+
+  for (var i = 0; i < searchedArtists.length; i++) {
+      var artistButton = document.createElement("button");
+
+      artistButton.addEventListener('click', function(event) {
+          getArtistData(event, event.target.textContent)
+      })
+
+      artistButton.textContent = searchedArtists[i];
+      searchHistory.appendChild(artistButton);
+  }
+
+  // function clearHistory() {
+  //     searchHistory.innerHTML = '';
+  // }
+
+  // var clearArtists = document.getElementById('clear-artists');
+  // clearArtists.addEventListener('click', clearHistory);
 }
 
 function getConcerts() {

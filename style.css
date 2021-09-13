@@ -83,3 +83,7 @@ input {
 #songkick {
   margin-top: 200px;
 }
+
+#songkick p {
+  font-size: 12px;
+}
