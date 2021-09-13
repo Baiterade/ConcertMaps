@@ -174,7 +174,7 @@ function initMap() {
             "elementType": "geometry",
             "stylers": [
               {
-                "color": "#373737"
+                "color": "#f75641"
               }
             ]
           },
@@ -201,7 +201,7 @@ function initMap() {
             "elementType": "labels.text.fill",
             "stylers": [
               {
-                "color": "#616161"
+                "color": "#f75641"
               }
             ]
           },
@@ -245,9 +245,14 @@ document.getElementById("submit").addEventListener("click", getArtistData);
 var artistId;
 var concertInfo;
 
-function getArtistData() {
+function getArtistData(event, savedArtist) {
+  event.preventDefault();
 
   var artist = document.getElementById('artist-search').value;
+  
+  if (savedArtist) {
+    artist = savedArtist
+  }
 
   fetch("https://api.songkick.com/api/3.0/search/artists.json?apikey=gKmSw1OM4IAL8F8j&query=" + artist)
     .then(function (response) {
@@ -269,6 +274,11 @@ function getArtistData() {
 }
 
 var searchedArtists = [];
+// var searchedArtists = localStorage.getItem("artists");
+
+// if (localStorage.getItem("artists") === null) {
+//   searchedArtists = [];
+// }
 
 function storeArtist() {
     searchedArtists.push(artistName);
@@ -292,12 +302,14 @@ function getStoredArtists() {
       searchHistory.appendChild(artistButton);
   }
 
-  // function clearHistory() {
-  //     searchHistory.innerHTML = '';
-  // }
+  function clearHistory() {
+      // localStorage.setItem("artists", );
+      searchedArtists.splice(0, searchedArtists.length);
+      searchHistory.innerHTML = '';
+  }
 
-  // var clearArtists = document.getElementById('clear-artists');
-  // clearArtists.addEventListener('click', clearHistory);
+  var clearArtists = document.getElementById('clear-artists');
+  clearArtists.addEventListener('click', clearHistory);
 }
 
 function getConcerts() {
