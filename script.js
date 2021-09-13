@@ -239,7 +239,7 @@ function initMap() {
 }
 
 
-document.getElementById("submit").addEventListener("click", hideMarkers);
+// document.getElementById("submit").addEventListener("click", hideMarkers);
 document.getElementById("submit").addEventListener("click", getArtistData);
 
 var artistId;
@@ -284,22 +284,22 @@ function getConcerts() {
 
 }
 
-var allMarkers = [];
+// var allMarkers = [];
 
-function hideMarkers() {
-  setMaponAll(null);
-}
+// function hideMarkers() {
+//   setMaponAll(null);
+// }
 
-function deleteMarkers() {
-  hideMarkers();
-  allmarkers = [];
-}
+// function deleteMarkers() {
+//   hideMarkers();
+//   allmarkers = [];
+// }
 
 function generateMarkers() {
 
   // deleteMarkers();
 
-  // var allMarkers = [];
+  var allMarkers = [];
 
   // function deleteMarkers() {
   //   // hideMarkers();
