@@ -11,6 +11,7 @@ navigator.geolocation.getCurrentPosition(success);
 
 
 let map;
+let allMarkers = [];
 
 function initMap() {
 
@@ -239,7 +240,6 @@ function initMap() {
 }
 
 
-// document.getElementById("submit").addEventListener("click", hideMarkers);
 document.getElementById("submit").addEventListener("click", getArtistData);
 
 var artistId;
@@ -284,27 +284,24 @@ function getConcerts() {
 
 }
 
-// var allMarkers = [];
-
-// function hideMarkers() {
-//   setMaponAll(null);
-// }
-
-// function deleteMarkers() {
-//   hideMarkers();
-//   allmarkers = [];
-// }
-
 function generateMarkers() {
 
-  // deleteMarkers();
+  function setMapOnAll(map) {
+    for (let i = 0; i < allMarkers.length; i++) {
+      allMarkers[i].setMap(map);
+    }
+  }
 
-  var allMarkers = [];
+  function hideMarkers() {
+    setMapOnAll(null);
+  }
 
-  // function deleteMarkers() {
-  //   // hideMarkers();
-  //   allmarkers = [];
-  // }
+  function deleteMarkers() {
+    hideMarkers();
+    allMarkers = [];
+  }
+
+  deleteMarkers();
 
   for(i = 0; i < concertInfo.length; i++){
     const marker = new google.maps.Marker({
@@ -325,12 +322,18 @@ function generateMarkers() {
 
       var hour = (milTime.split(':'))[0];
       var minute = (milTime.split(':'))[1];
+
+      var hourNum = parseInt(hour, 10);
+      var convHour = hourNum - 12;
       
-      if ((milTime.split(':'))[0] === 12 || (milTime.split(':'))[0] <= 11) {
-        return hour + ':' + minute + ' A.M.'; 
+      if (hourNum >= 13 && hourNum <= 23) {
+        return convHour + ':' + minute + ' P.M.';
+      } else if (hourNum === 12) {
+        return hourNum + ':' + minute + ' P.M.';
+      } else if (hourNum === 24 || hourNum === 00) {
+        return '12' + ':' + minute + ' A.M.';
       } else {
-        var convHour = hour - 12;
-        return convHour + ':' + minute + ' P.M.'; 
+        return hour + ':' + minute + ' A.M.'; 
       }
     }
 
