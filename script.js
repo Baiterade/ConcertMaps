@@ -21,6 +21,7 @@ function initMap() {
 
       map = new google.maps.Map(document.getElementById("map"), {
         center: pos,
+        
         zoom: 9,
 
         styles: [
@@ -232,7 +233,7 @@ function initMap() {
               }
             ]
           }],
-
+        zoom: 8,
       });
     })
   };
@@ -327,6 +328,10 @@ function getConcerts() {
 
       generateMarkers(concertInfo);
       }
+
+      generateMarkers();
+    }
+
     );
 
 }
@@ -409,5 +414,12 @@ function generateMarkers() {
       });
     });
   }
-
+function generateMarkers(){
+  for(i = 0; i < concertInfo.length; i++){
+    new google.maps.Marker({
+      position: { lat: concertInfo[i].venue.lat, lng:concertInfo[i].venue.lng },
+      map,
+      title: "Hello World!",
+    });
+  }
 }
