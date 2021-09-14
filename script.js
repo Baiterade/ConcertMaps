@@ -157,7 +157,7 @@ function initMap() {
             "elementType": "geometry.fill",
             "stylers": [
               {
-                "color": "#2c2c2c"
+                "color": "#f75641"
               }
             ]
           },
@@ -193,7 +193,7 @@ function initMap() {
             "elementType": "geometry",
             "stylers": [
               {
-                "color": "#4e4e4e"
+                "color": "#f75641"
               }
             ]
           },
@@ -220,7 +220,7 @@ function initMap() {
             "elementType": "geometry",
             "stylers": [
               {
-                "color": "#000000"
+                "color": "#c7c7c7"
               }
             ]
           },
@@ -283,23 +283,23 @@ var searchedArtists = [];
 
 function storeArtist() {
     searchedArtists.push(artistName);
-    localStorage.setItem("artists", searchedArtists);
+    localStorage.setItem("artists", JSON.stringify(searchedArtists));
 }
 
 function getStoredArtists() {
-  localStorage.getItem("artists");
+  var storedArtists = JSON.parse(localStorage.getItem("artists"));
 
   var searchHistory = document.getElementById('artist-buttons');
   searchHistory.innerHTML = '';
 
-  for (var i = 0; i < searchedArtists.length; i++) {
+  for (var i = 0; i < storedArtists.length; i++) {
       var artistButton = document.createElement("button");
 
       artistButton.addEventListener('click', function(event) {
           getArtistData(event, event.target.textContent)
       })
 
-      artistButton.textContent = searchedArtists[i];
+      artistButton.textContent = storedArtists[i];
       searchHistory.appendChild(artistButton);
   }
 
@@ -327,14 +327,8 @@ function getConcerts() {
       concertInfo = data.resultsPage.results.event;
 
       generateMarkers(concertInfo);
-      }
-
-      generateMarkers();
+      })
     }
-
-    );
-
-}
 
 function generateMarkers() {
 
@@ -412,14 +406,6 @@ function generateMarkers() {
         map,
         shouldFocus: true,
       });
-    });
-  }
-function generateMarkers(){
-  for(i = 0; i < concertInfo.length; i++){
-    new google.maps.Marker({
-      position: { lat: concertInfo[i].venue.lat, lng:concertInfo[i].venue.lng },
-      map,
-      title: "Hello World!",
     });
   }
 }
