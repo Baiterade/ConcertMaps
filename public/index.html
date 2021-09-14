@@ -9,9 +9,10 @@
       <title>Rodemap</title>
 
       <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-      <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="tail.css"
       <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;300;400;600;900&display=swap" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="style.css"/>
+      <link rel="stylesheet" type="text/css" href="queries.css"/>
 
     </head>
 
@@ -22,33 +23,54 @@
         <section>
 
           <div id="search">
+
+              <div id="rodemap">
             
-            <h1>Rodemap</h1>
+                <h1>Rodemap</h1>
+                <h4>Stalking. Musicians. Live.</h4>
+
+              </div>
 
               <div id="input-fields">
 
                 <input type="text" name="artist-search" id="artist-search" placeholder="ENTER ARTIST NAME"/>
-                <input type="text" name="location-search" id="location-search" placeholder="ENTER LOCATION"/>
+                <!--<input type="text" name="location-search" id="location-search" placeholder="ENTER LOCATION"/>-->
   
                 <button id="submit">SUBMIT</button>
               
               </div>
 
-              <footer>
-                <img>
-                <p>Powered by Songkick</p>
-              </footer>
+              <div id="search-history">
+
+                <h5>Previously Searched</h5>
+                <button id="clear-artists" class=" font-bold font-sans cursor-pointer border bg-transparent py-2 px-6 focus-ring border-solid border-white hover:border-black text-white rounded-full">
+                  CLEAR
+                </button>
+
+                <div id="artist-buttons"></div>
+              
+              </div>
+
+              <div id="songkick">
+                <img src="./assets/sk-badge-white.png" height="50" width="50">
+                 <br>
+                <a href="https://www.songkick.com/">Powered by Songkick</a>
+                
+              </div>
           
           </div>
 
           <div id="map"></div>
 
+          <div id="footer"><p>test</p></div>
+
         </section>
 
       </main>
 
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvuGgOYuLOHhhxOlco2IffFGJWPX4JZ7A&callback=initMap&libraries=places" async></script>
-      <script src="script.js"></script>
+        <script src="script.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBYVaAgS6jDqNTJ1FG70x7gmc9rXKoNGo&callback=initMap&libraries=places"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   
     </body>
 
