@@ -156,7 +156,7 @@ function initMap() {
             "elementType": "geometry.fill",
             "stylers": [
               {
-                "color": "#2c2c2c"
+                "color": "#f75641"
               }
             ]
           },
@@ -192,7 +192,7 @@ function initMap() {
             "elementType": "geometry",
             "stylers": [
               {
-                "color": "#4e4e4e"
+                "color": "#f75641"
               }
             ]
           },
@@ -219,7 +219,7 @@ function initMap() {
             "elementType": "geometry",
             "stylers": [
               {
-                "color": "#000000"
+                "color": "#c7c7c7"
               }
             ]
           },
@@ -282,6 +282,7 @@ var searchedArtists = [];
 //   searchedArtists = [];
 // }
 function storeArtist() {
+
   searchedArtists.push(artistName);
   localStorage.setItem("artists", JSON.stringify(searchedArtists));
 }
@@ -331,6 +332,7 @@ function getConcerts() {
       concertInfo = data.resultsPage.results.event;
 
       generateMarkers(concertInfo);
+
       }
     );
 
