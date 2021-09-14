@@ -17,8 +17,11 @@ section {
 }
 
 #search {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   text-align: center;
-  background-image: linear-gradient(#58595b, rgb(247, 86, 65));
+  background-image: linear-gradient(#58595b, #f75641);
   width: 15%;
   padding: 20px;
 }
@@ -27,15 +30,15 @@ section {
   font-size: 48px;
 }
 
-#input-fields {
+/* #input-fields {
   margin-top: 200px;
-}
+} */
 
 input {
   display: block;
   margin: 0 auto;
   width: 75%;
-  margin-top: 50px;
+  /* margin-top: 50px; */
   border: none;
   outline: none;
   color: white;
@@ -72,10 +75,24 @@ input {
 
 #map {
   /* height: 100%; */
+  color: black;
+  text-align: center;
   width: 85%;
 }
 
+#songkick {
+  margin-top: 200px;
+}
+
+#songkick p {
+  font-size: 12px;
+}
+
+#footer {
+  display: none;
+  visibility: hidden;
+  z-index: -1;
+=======
 #songkick{
   margin-top: 200px;
-  
 }

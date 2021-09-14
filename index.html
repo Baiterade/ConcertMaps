@@ -12,6 +12,7 @@
 
       <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;300;400;600;900&display=swap" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="style.css"/>
+      <link rel="stylesheet" type="text/css" href="queries.css"/>
 
     </head>
 
@@ -22,10 +23,13 @@
         <section>
 
           <div id="search">
-            
-            <h1>Rodemap</h1>
 
-            <h4>Stalking. Musicians. Live.</h4>
+              <div id="rodemap">
+            
+                <h1>Rodemap</h1>
+                <h4>Stalking. Musicians. Live.</h4>
+
+              </div>
 
               <div id="input-fields">
 
@@ -33,6 +37,15 @@
                 <!--<input type="text" name="location-search" id="location-search" placeholder="ENTER LOCATION"/>-->
   
                 <button id="submit">SUBMIT</button>
+              
+              </div>
+
+              <div id="search-history">
+
+                <h5>Recently Searched</h5>
+                <button id="clear-artists">CLEAR</button>
+
+                <div id="artist-buttons"></div>
               
               </div>
 
@@ -45,12 +58,15 @@
 
           <div id="map"></div>
 
+          <div id="footer"><p>test</p></div>
+
         </section>
 
       </main>
 
         <script src="script.js"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBYVaAgS6jDqNTJ1FG70x7gmc9rXKoNGo&callback=initMap&libraries=places"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   
     </body>
 
