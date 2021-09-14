@@ -58,7 +58,7 @@ input {
 }
 
 #submit {
-  margin-top: 45px;
+  margin-top: 25px;
   border: 1px solid white;
   border-radius: 50px;
   background-color: transparent;
@@ -70,6 +70,19 @@ input {
   padding: 10px;
   padding-left: 25px;
   padding-right: 25px;
+  cursor: pointer;
+}
+
+#artist-buttons button {
+  margin: 5px;
+  margin-top: 10px;
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-family: 'Barlow', sans-serif;
+  padding: 10px;
   cursor: pointer;
 }
 

@@ -240,6 +240,8 @@ function initMap() {
 }
 
 
+getStoredArtists();
+
 document.getElementById("submit").addEventListener("click", getArtistData);
 
 var artistId;
@@ -267,7 +269,7 @@ function getArtistData(event, savedArtist) {
 
       getConcerts();
       storeArtist(artistName);
-      getStoredArtists(artistName);
+      // getStoredArtists(artistName);
       }
     );
 
@@ -279,35 +281,38 @@ var searchedArtists = [];
 // if (localStorage.getItem("artists") === null) {
 //   searchedArtists = [];
 // }
-
 function storeArtist() {
-    searchedArtists.push(artistName);
-    localStorage.setItem("artists", searchedArtists);
+  searchedArtists.push(artistName);
+  localStorage.setItem("artists", JSON.stringify(searchedArtists));
 }
 
 function getStoredArtists() {
-  localStorage.getItem("artists");
+    var storedArtists = JSON.parse(localStorage.getItem("artists"));
 
-  var searchHistory = document.getElementById('artist-buttons');
-  searchHistory.innerHTML = '';
-
-  for (var i = 0; i < searchedArtists.length; i++) {
-      var artistButton = document.createElement("button");
-
-      artistButton.addEventListener('click', function(event) {
-          getArtistData(event, event.target.textContent)
-      })
-
-      artistButton.textContent = searchedArtists[i];
-      searchHistory.appendChild(artistButton);
-  }
+    if (storedArtists === null) {
+      return;
+    } else {
+      var searchHistory = document.getElementById('artist-buttons');
+      searchHistory.innerHTML = '';
+    
+      for (var i = 0; i < storedArtists.length; i++) {
+          var artistButton = document.createElement("button");
+    
+          artistButton.addEventListener('click', function(event) {
+              getArtistData(event, event.target.textContent)
+          })
+    
+          artistButton.textContent = storedArtists[i];
+          searchHistory.appendChild(artistButton);
+      }
+    }
 
   function clearHistory() {
-      // localStorage.setItem("artists", );
-      searchedArtists.splice(0, searchedArtists.length);
-      searchHistory.innerHTML = '';
+    // localStorage.setItem("artists", );
+    searchedArtists.splice(0, searchedArtists.length);
+    searchHistory.innerHTML = '';
   }
-
+  
   var clearArtists = document.getElementById('clear-artists');
   clearArtists.addEventListener('click', clearHistory);
 }
