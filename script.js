@@ -126,7 +126,7 @@ function initMap() {
             "elementType": "labels.text.fill",
             "stylers": [
               {
-                "color": "#757575"
+                "color": "#ffffff"
               }
             ]
           },
@@ -178,7 +178,7 @@ function initMap() {
             "elementType": "geometry.fill",
             "stylers": [
               {
-                "color": "#f75641"
+                "color": "#374151"
               }
             ]
           },
@@ -196,7 +196,7 @@ function initMap() {
             "elementType": "geometry",
             "stylers": [
               {
-                "color": "#f75641"
+                "color": "#6b7280"
               }
             ]
           },
@@ -214,7 +214,7 @@ function initMap() {
             "elementType": "geometry",
             "stylers": [
               {
-                "color": "#f75641"
+                "color": "#ef4444"
               }
             ]
           },
@@ -223,7 +223,7 @@ function initMap() {
             "elementType": "labels.text.fill",
             "stylers": [
               {
-                "color": "#f75641"
+                "color": "#ef4444"
               }
             ]
           },
