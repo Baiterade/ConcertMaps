@@ -1,3 +1,6 @@
+var currentLat;
+var currentLng;
+
 function success(pos) {
   var crd = pos.coords;
 
@@ -5,6 +8,9 @@ function success(pos) {
   console.log(`Latitude : ${crd.latitude}`);
   console.log(`Longitude: ${crd.longitude}`);
   console.log(`More or less ${crd.accuracy} meters.`);
+
+  currentLat = crd.latitude;
+  currentLng = crd.longitude;
 }
 
 navigator.geolocation.getCurrentPosition(success);
@@ -239,7 +245,6 @@ function initMap() {
 
 }
 
-
 getStoredArtists();
 
 document.getElementById("submit").addEventListener("click", submitClicked);
@@ -282,9 +287,8 @@ function getArtistData(savedArtist) {
 var searchedArtists = [];
 
 if (localStorage.getItem("artists")) {
-  searchedArtists = [JSON.parse(localStorage.getItem("artists"))];
+  searchedArtists = JSON.parse(localStorage.getItem("artists"));
 }
-
 function storeArtist() {
 
   if (document.getElementById('artist-search').value) {
@@ -354,6 +358,12 @@ function getConcerts() {
 
 function generateMarkers() {
 
+  const directionsService = new google.maps.DirectionsService();
+  const directionsRenderer = new google.maps.DirectionsRenderer({
+  draggable: false,
+  map,
+  });
+
   function setMapOnAll(map) {
     for (let i = 0; i < allMarkers.length; i++) {
       allMarkers[i].setMap(map);
@@ -372,6 +382,7 @@ function generateMarkers() {
   deleteMarkers();
 
   for (i = 0; i < concertInfo.length; i++) {
+
     const marker = new google.maps.Marker({
       position: { lat: concertInfo[i].venue.lat, lng: concertInfo[i].venue.lng },
       map,
@@ -428,6 +439,19 @@ function generateMarkers() {
         map,
         shouldFocus: true,
       });
+
+      directionsRenderer.set("directions", null);
+
+      directionsService.route({
+        origin: { lat: currentLat, lng: currentLng },
+        destination: marker.position,
+        waypoints: [],
+        travelMode: google.maps.TravelMode.DRIVING,
+        avoidTolls: false,
+      })
+        .then((result) => {
+          directionsRenderer.setDirections(result);
+        })
     });
   }
   getStoredArtists();
