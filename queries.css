@@ -21,16 +21,13 @@
     }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) and (min-width: 0px) {
     section {
-        flex-direction: column;
         height: 100%;
     }
 
     #search {
         padding: 0;
-        background-image: linear-gradient(to right, #58595b, #f75641);
-        flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
@@ -45,7 +42,8 @@
         order: 1;
         flex: 1 1 1024px;
         text-align: center;
-        margin-bottom: 0;
+        margin-top: 25px;
+        margin-bottom: 10px;
     }
 
     #rodemap h4 {
@@ -62,11 +60,12 @@
     #songkick {
         order: 2;
         flex: 1 1 1024px;
+        margin-bottom: 30px;
     }
 
     #songkick img {
+        padding: 0;
         display: inline;
-        visibility: visible;
         height: 25px;
         width: 25px;
     }
@@ -75,8 +74,6 @@
         display: inline;
         margin-left: 15px;
         font-size: 10px;
-        position: relative;
-        bottom: 8px;
     }
 
     #input-fields, #songkick {
@@ -108,18 +105,12 @@
     }
 
     #expand-btn {
+        outline: none;
         display: block;
         visibility: visible;
         margin: 0 auto;
-        border: none;
-        background-color: transparent;
-        color: white;
         font-size: 10px;
-        font-weight: bold;
-        letter-spacing: 1px;
         text-align: center;
-        font-family: 'Barlow', sans-serif;
-        cursor: pointer;
     }
 
     #search-history {
@@ -133,15 +124,30 @@
         display: inline;
     }
 
+    #clear-artists {
+        margin-left: 20px;
+    }
+
     #map {
         width: 100%;
         height: 100%;
     }
+}
 
-    #footer {
-        background-image: linear-gradient(to right, #58595b, #f75641);
+@media screen and (max-width: 639px) {
+    section {
         display: flex;
-        visibility: visible;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    #search {
+        padding: 0;
+        background-image: linear-gradient(to right, #1f2937, #ef4444);
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
         width: 100%;
     }
 }
