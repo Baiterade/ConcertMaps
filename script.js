@@ -1,3 +1,19 @@
+var historyDiv = document.getElementById('search-history');
+
+if (window.matchMedia("(max-width: 1024px)").matches) {
+  historyDiv.setAttribute("class", "condensed")
+} 
+
+var expandBtn = document.getElementById('expand-btn');
+expandBtn.addEventListener("click", showHistoryDiv);
+
+function showHistoryDiv() {
+  if ((historyDiv.getAttribute("class")) === "condensed") {
+    historyDiv.setAttribute("class", "expanded")
+  } else {
+    historyDiv.setAttribute("class", "condensed")
+  }
+}
 var currentLat;
 var currentLng;
 
@@ -240,7 +256,7 @@ function initMap() {
           }],
 
       });
-    })
+    })  
   };
 
 }
@@ -278,7 +294,6 @@ function getArtistData(savedArtist) {
 
       getConcerts();
       storeArtist();
-      // getStoredArtists(artistName);
     }
     );
 
@@ -453,6 +468,9 @@ function generateMarkers() {
           directionsRenderer.setDirections(result);
         })
     });
+
   }
+
   getStoredArtists();
+  
 }
